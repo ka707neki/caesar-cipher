@@ -1,6 +1,7 @@
-# 🔐 Caesar Cipher Encrypter
+[README_caesar_full.md](https://github.com/user-attachments/files/33550591/README_caesar_full.md)
+# 🔐 Caesar Cipher Toolkit
 
-A simple command-line tool that encrypts text using the classic Caesar cipher, shifting every letter by a number you choose.
+Two small command-line tools in Python: one **encrypts** text with the classic Caesar cipher, and the other **decrypts** it back when you know the shift.
 
 ```
 ===================================
@@ -10,11 +11,20 @@ A simple command-line tool that encrypts text using the classic Caesar cipher, s
 
 ## ✨ Features
 
-- Encrypts any message with a custom shift value
+- Encrypt and decrypt messages with a custom shift value
 - Wraps around the alphabet (`z` + 1 becomes `a`) using modulo 26
 - Preserves letter casing (uppercase stays uppercase)
 - Keeps spaces, numbers, and special characters unchanged
 - Zero dependencies: only Python's standard library
+
+## 📁 Structure
+
+```
+caesar-cipher/
+├── caesar_cipher.py     # encrypt a message
+├── caesar_decrypt.py    # decrypt a message
+└── README.md
+```
 
 ## 🛠 Requirements
 
@@ -29,33 +39,39 @@ cd caesar-cipher
 
 ## ▶️ Usage
 
+**Encrypt:**
 ```bash
 python3 caesar_cipher.py
 ```
 
-Then type your message and the shift value when prompted.
+**Decrypt:**
+```bash
+python3 caesar_decrypt.py
+```
+
+Each tool asks for a message and a shift number.
 
 ### Example
 
-| Message       | Shift | Result        |
-|---------------|-------|---------------|
-| `Hello World` | 3     | `Khoor Zruog` |
-| `xyz`         | 3     | `abc`         |
-| `Python 3!`   | 1     | `Qzuipo 3!`   |
-
-> 💡 **Tip:** to decrypt, run the program on the encrypted text with a negative shift (e.g. `-3`).
+| Tool    | Message       | Shift | Result        |
+|---------|---------------|-------|---------------|
+| Encrypt | `Hello World` | 3     | `Khoor Zruog` |
+| Decrypt | `Khoor Zruog` | 3     | `Hello World` |
+| Encrypt | `xyz`         | 3     | `abc`         |
+| Encrypt | `Python 3!`   | 1     | `Qzuipo 3!`   |
 
 ## 🧠 How it works
 
 1. Each letter is located in the alphabet (`string.ascii_lowercase`).
-2. The new position is calculated with `(position + shift) % 26`.
+2. **Encrypt:** new position = `(position + shift) % 26`.
+   **Decrypt:** new position = `(position - shift) % 26`.
 3. If the original letter was uppercase, the result is converted back to uppercase.
 4. Anything that is not a letter is added to the output as it is.
 
 ## 🗺 Ideas for the future
 
-- [ ] Add a decrypt option to the menu
-- [ ] Brute-force mode that tries all 26 shifts
+- [ ] Brute-force mode that tries all 26 shifts when the shift is unknown
+- [ ] One menu to choose between encrypt and decrypt
 - [ ] Read and write text from files
 
 ## 📄 License
